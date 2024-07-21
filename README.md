@@ -2,11 +2,21 @@
 
 Tools for elevation data, originally created for the [PeakNav](https://peaknav.com) app.
 
+Install by cloning the project from github:
+
+```shell
+git clone https://github.com/Upabjojr/peaknav-tools
+cd peaknav-tools
+pip install -e .
+```
+
 Example usage, get the estimated elevation of Mount Mitchell, North Carolina, in meters:
+
 ```python
 from peaknav_tools import get_elevation_from_coordinates
 get_elevation_from_coordinates(35.7649563, -82.2651155)
 ```
+
 Currently, this returns an elevation of 2024 meters for this coordinate (the actual elevation of Mount Mitchell is 2038 meters).
 The elevation error typically ranges between 10-20 meters.
 
