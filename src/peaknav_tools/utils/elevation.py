@@ -117,9 +117,12 @@ def convert_elevation_2img_to_1img(img_jpeg: numpy.ndarray, img_png: numpy.ndarr
     return img
 
 
-def get_elevation_from_coordinates(latitude: float, longitude: float) -> int:
+def get_elevation_from_coordinates(latitude: float, longitude: float, elevation_dataset_path=None) -> int:
     """
     Return the elevation in meters of the given coordinate (latitude and longitude).
+
+    Optional parameter `elevation_dataset_path` may be used if the elevation
+    dataset has been locally downloaded, for offline usage.
 
     This function will download the corresponding elevation tile if it has not already been downloaded.
     """
@@ -129,5 +132,5 @@ def get_elevation_from_coordinates(latitude: float, longitude: float) -> int:
     if (tile.x, tile.y) not in _elev_tiles:
         return 0
     elev_tile = ElevationTile(tile, 0)
-    elev_tile_loaded = elev_tile.load()
+    elev_tile_loaded = elev_tile.load(path=elevation_dataset_path)
     return elev_tile_loaded.get_elevation_for_coord(latitude, longitude)
