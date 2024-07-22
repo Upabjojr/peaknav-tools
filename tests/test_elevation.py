@@ -6,6 +6,7 @@ from peaknav_tools.utils.elevation import get_elevation_from_coordinates
 @pytest.mark.parametrize(
     ["lat", "lon", "expected", "real", "name"],
     [
+        (0, 0, 0, 0, "Null Island"),  # Testing behaviour in open ocean
         (37.74600,-119.53278, 2612, 2694, "Half Dome, Yosemite"),
         (37.7481814, -119.5868869, 1228, 1218, "Yosemite Village"),
         (36.6065528, -117.1468690, 0, 3, "Stovepipe Wells, Death Valley"),

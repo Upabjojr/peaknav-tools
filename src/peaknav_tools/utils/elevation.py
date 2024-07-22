@@ -123,8 +123,11 @@ def get_elevation_from_coordinates(latitude: float, longitude: float) -> int:
 
     This function will download the corresponding elevation tile if it has not already been downloaded.
     """
+    from ._elevation_tile_index import _elev_tiles
     coord = Coordinate(latitude, longitude)
     tile = coord.get_containing_tile(8)
+    if (tile.x, tile.y) not in _elev_tiles:
+        return 0
     elev_tile = ElevationTile(tile, 0)
     elev_tile_loaded = elev_tile.load()
     return elev_tile_loaded.get_elevation_for_coord(latitude, longitude)
